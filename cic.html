@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopNow - Your Style, Delivered</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* --- Elegant Navigation Bar --- */
+    .landing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff6f61;
+      cursor: pointer;
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #333;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ff6f61;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ff6f61;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #ff6f61;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #e4574f;
+    }
+
+    /* --- Categories Section --- */
+    .categories {
+      padding: 3rem 1rem;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .categories h2 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .category-grid {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .category-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Make all images the same size, cover, and keep aspect ratio */
+    .category-card img {
+      width: 180px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* --- Footer --- */
+    .landing-footer {
+      background: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .socials {
+      margin-top: 0.5rem;
+    }
+
+    .socials a {
+      color: #bbb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #fff;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .landing-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-bar {
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .category-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Navigation -->
+  <header class="landing-header">
+    <div class="logo" onclick="window.location.href='landing.html'">ShopNow</div>
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link active">Products</a>
+      <a href="login.html" class="nav-link">Login</a>
+      <a href="signup.html" class="nav-link">Sign Up</a>
+      <a href="addtocart.html" class="nav-link">Checkout</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to ShopNow</h1>
+      <p>Your one-stop destination for trendy fashion & accessories</p>
+      <a href="index123.html" class="cta-btn">Start Shopping</a>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <div class="category-card" onclick="goToCategory('men')">
+        <img src="men.png" alt="Men" />
+        <h3>Men</h3>
+      </div>
+      <div class="category-card" onclick="goToCategory('women')">
+        <img src="women.png" alt="Women" />
+        <h3>Women</h3>
+      </div>
+      <div class="category-card" onclick="goToCategory('accessories')">
+        <img src="accessories.png" alt="Accessories" />
+        <h3>Accessories</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <p>&copy; 2025 ShopNow. All rights reserved.</p>
+    <div class="socials">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+  <script>
+  function goToCategory(category) {
+    if (category === 'men') {
+      window.location.href = 'men.html';
+    } else if (category === 'women') {
+      window.location.href = 'women.html';
+    } else if (category === 'accessories') {
+      window.location.href = 'accessories.html';
+    }
+  }
+</script>
+</body>
+</html>

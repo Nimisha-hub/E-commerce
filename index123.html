@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products - ShopNow</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff6f61;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff6f61;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ff6f61;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* Products Section */
+    .products {
+      padding: 2rem;
+    }
+
+    .products h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 0.8rem 0 0.3rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .product-card p {
+      color: #777;
+      margin: 0.2rem 0 0.8rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .product-card button {
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .product-card button:hover {
+      background-color: #e4574f;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+     <div class="logo" onclick="window.location.href='cic.html'">ShopNow</div>
+    <nav>
+      <a href="index.html" class="active">Products</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="addtocart.html">Checkout</a>
+    </nav>
+  </header>
+
+  <!-- Product List -->
+  <section class="products">
+    <h1>Our Best Products</h1>
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="denim.png" alt="Classic Denim Jacket" />
+        <h3>Classic Denim Jacket</h3>
+        <p>₹4099</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="sunglasses.png" alt="Stylish Sunglasses" />
+        <h3>Stylish Sunglasses</h3>
+        <p>₹1639</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="sneakers.png" alt="Casual White Sneakers" />
+        <h3>Casual White Sneakers</h3>
+        <p>₹4919</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src="handbag.png" alt="Leather Handbag" />
+        <h3>Leather Handbag</h3>
+        <p>₹7379</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src="smart watch.png" alt="Fitness Smartwatch" />
+        <h3>Fitness Smartwatch</h3>
+        <p>₹10659</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <img src="floral dress.png" alt="Summer Floral Dress" />
+        <h3>Summer Floral Dress</h3>
+        <p>₹3279</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Add event listeners to all Add to Cart buttons
+    const buttons = document.querySelectorAll('.product-card button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+        const name = card.querySelector('h3').innerText;
+        const priceText = card.querySelector('p').innerText;
+        // Remove ₹ symbol and convert price to number
+        const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+
+        const image = card.querySelector('img').src;
+
+        const product = { name, price, image };
+
+        // Get existing cart or create new
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add product
+        cart.push(product);
+
+        // Save cart back
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Alert and redirect to cart page
+        alert(`Added "${name}" to cart!`);
+        window.location.href = 'addtocart.html';
+      });
+    });
+  </script>
+
+</body>
+</html>

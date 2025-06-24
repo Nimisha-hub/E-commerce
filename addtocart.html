@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart - ShopNow</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #ff6f61;
+      cursor: pointer;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 1rem;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #ff6f61;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ff6f61;
+      transition: width 0.3s ease;
+    }
+
+    nav a.active::after,
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .page-title {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+
+    .cart-item {
+      background: white;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .cart-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-details h3 {
+      margin: 0 0 0.3rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .cart-item-details p {
+      margin: 0;
+      font-weight: bold;
+      color: #ff6f61;
+      font-size: 1.1rem;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      color: #ff6f61;
+    }
+
+    .empty-cart {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 3rem;
+      color: #777;
+    }
+
+    .clear-cart-btn {
+      background: #ff6f61;
+      border: none;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      float: right;
+      transition: background 0.3s ease;
+    }
+
+    .clear-cart-btn:hover {
+      background: #e4574f;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" onclick="window.location.href='cic.html'">ShopNow</div>
+    <nav>
+      <a href="index123.html">Products</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="addtocart.html" class="active">Cart</a>
+    </nav>
+  </header>
+
+  <h1 class="page-title">Your Cart</h1>
+
+  <div class="cart-container" id="cartContainer">
+    <!-- Cart items will be injected here -->
+  </div>
+
+  <script>
+    function renderCart() {
+      const cartContainer = document.getElementById('cartContainer');
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      cartContainer.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        // Strip any currency symbol and parse price
+        let priceNum = parseFloat(item.price.toString().replace(/[^0-9.]/g, ''));
+        total += priceNum;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('cart-item');
+
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="cart-item-details">
+            <h3>${item.name}</h3>
+            <p>₹${priceNum.toFixed(2)}</p>
+          </div>
+          <button onclick="removeFromCart(${index})" title="Remove item" style="background:#ff6f61; border:none; color:#fff; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Remove</button>
+        `;
+
+        cartContainer.appendChild(itemDiv);
+      });
+
+      // Add total and clear button
+      const totalDiv = document.createElement('div');
+      totalDiv.classList.add('cart-total');
+      totalDiv.textContent = `Total: ₹${total.toFixed(2)}`;
+
+      const clearBtn = document.createElement('button');
+      clearBtn.textContent = 'Clear Cart';
+      clearBtn.classList.add('clear-cart-btn');
+      clearBtn.onclick = () => {
+        if (confirm('Are you sure you want to clear the cart?')) {
+          localStorage.removeItem('cart');
+          renderCart();
+        }
+      };
+
+      cartContainer.appendChild(totalDiv);
+      cartContainer.appendChild(clearBtn);
+    }
+
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    // Render cart on page load
+    window.onload = renderCart;
+  </script>
+
+</body>
+</html>

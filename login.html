@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - ShopNow</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      color: #ff6f61;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .login-btn {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background-color: #e4574f;
+    }
+
+    .or-divider {
+      margin: 1rem 0;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .social-btn {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.6rem;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      text-decoration: none;
+      color: #ff6f61;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="cic.html" class="back-link">&#8592; Back</a>
+
+  <div class="login-container">
+    <h2>Login to ShopNow</h2>
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button class="login-btn">Login</button>
+
+    <div class="or-divider">or continue with</div>
+
+    <div class="social-btn">
+      <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google"> Google
+    </div>
+    <div class="social-btn">
+      <img src="https://img.icons8.com/ios-filled/50/000000/mac-os.png" alt="Apple"> Apple
+    </div>
+  </div>
+
+</body>
+</html>
